@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+>
+  <engine:Label class="box" text="Form" />
+  <engine:Article>
+    <engine:Label text="UIElements Expansions: Form is an asset that allows you to introduce Form functions to EditorWindow and Inspector that use UIElements." />
+    <engine:Label text="1. Form Functions" />
+    <engine:Div class="indent">
+      <engine:Label text="Provides functionality similar to HTML form tags." />
+      <engine:Label text="Form tags surround interactive UXML such as TextField and EnumField." />
+      <engine:Div class="code">
+        <engine:Label text="&lt;engine:Form&gt;" />
+        <engine:Div class="indent">
+          <engine:Label text="Any form fields" />
+          <engine:Label text="&lt;engine:SubmitButton label=&quot;Submit&quot; /&gt;" />
+        </engine:Div>
+        <engine:Label text="&lt;/engine:Form&gt;" />
+      </engine:Div>
+      <engine:Label text="You can click SumbmitButton to retrieve the values of the enclosed fields." />
+      <engine:Label text="The data is processed from the callback function." />
+      <engine:Label text="You can also access an instance of a SubmitButton from a script, but here's how you can specify it from within UXML." />
+      <engine:Label text="First add a name attribute to each field in the form. The name attribute is the key to the retrieved data." />
+      <engine:Div class="code">
+        <engine:Label text="&lt;engine:TextField label=&quot;Name&quot; text=&quot;Name input&quot; name=&quot;Name&quot; /&gt;" />
+      </engine:Div>
+      <engine:Label text="Then add the type and method attributes to the SubmitButton. (Add assembly attribute if assembly is different)" />
+      <engine:Label text="You can add this to allow static methods to be executed on button click." />
+      <engine:Div class="code">
+        <engine:Label text="&lt;engine:SubmitButton label=&quot;Submit&quot; type=&quot;FormAction&quot; method=&quot;SaveFromForm&quot; /&gt;" />
+      </engine:Div>
+      <engine:Label text="The specified method must have a Dictionary&lt;string, object&gt; argument and a return value of void." />
+      <engine:Div class="code">
+        <engine:Label text="// FormAction.cs" />        
+        <engine:Label text="public static class FormAction {" />
+        <engine:Div class="indent">
+          <engine:Label text="public static void SaveFromForm( Dictionary&lt;string, object&gt; formData ) {" />
+          <engine:Div class="indent">
+            <engine:Label text="Something to do" />
+          </engine:Div>          
+          <engine:Label text="}" />
+        </engine:Div>
+        <engine:Label text="}" />
+      </engine:Div>
+      <engine:Label text="If you want the form to have an initial value, add the type and method attributes to the Form tag. (Add assembly attribute if assembly is different)" />
+      <engine:Div class="code">
+        <engine:Label text="&lt;engine:Form type=&quot;FormAction&quot; method=&quot;LoadToForm&quot;&gt;" />
+        <engine:Div class="indent">
+          <engine:Label text="Any form fields" />
+        </engine:Div>
+        <engine:Label text="&lt;/engine:Form&gt;" />
+      </engine:Div>
+      <engine:Label text="The specified method must have no arguments and return a Dictionary&lt;string, object&gt; value." />
+      <engine:Div class="code">
+        <engine:Label text="// FormAction.cs" />
+        <engine:Label text="public static class FormAction {" />
+        <engine:Div class="indent">
+          <engine:Label text="public static Dictionary&lt;string, object&gt; LoadToForm( ) {" />
+          <engine:Div class="indent">
+            <engine:Label text="Something to do" />
+            <engine:Label text="return dictionary;" />
+          </engine:Div>
+          <engine:Label text="}" />
+        </engine:Div>
+        <engine:Label text="}" />
+      </engine:Div>
+      <engine:Label text="In summary, the UXML code looks like this:" />
+      <engine:Div class="code">
+        <engine:Label text="&lt;engine:Form type=&quot;FormAction&quot; method=&quot;LoadToForm&quot;&gt;" />
+        <engine:Div class="indent">
+          <engine:Label text="..." />
+          <engine:Label text="&lt;engine:TextField label=&quot;Name&quot; text=&quot;Name input&quot; name=&quot;Name&quot; /&gt;" />
+          <engine:Label text="&lt;editor:EnumField type=&quot;UnityEngine.SystemLanguage,UnityEngine&quot; value=&quot;English&quot; name=&quot;Language&quot; label=&quot;Language&quot; /&gt;" />
+          <engine:Label text="..." />
+          <engine:Label text="&lt;engine:SubmitButton label=&quot;Submit&quot; type=&quot;FormAction&quot; method=&quot;SaveFromForm&quot; /&gt;" />
+        </engine:Div>
+        <engine:Label text="&lt;/engine:Form&gt;" />
+      </engine:Div>
+      <engine:Label text="Unity normally stores serialized data in scenes and scriptable objects." />
+      <engine:Label text="This asset is useful when you want to store values in a local or remote database." />
+    </engine:Div>
+    <engine:Label text="2. Additional fields and Form design" />
+    <engine:Div class="indent">
+      <engine:Label text="This asset provides new UXML tags to further control the form." />
+      <engine:Div class="indent">
+        <engine:Label text="・SliderField" />
+        <engine:Div class="indent">
+          <engine:Label text="Provides a slider and a numeric input field at the same time. Slide the number as you review it." />
+        </engine:Div>
+        <engine:Label text="・SliderIntField" />
+        <engine:Div class="indent">
+          <engine:Label text="Int version of the SliderField" />
+        </engine:Div>
+        <engine:Label text="・TextPopupField" />
+        <engine:Div class="indent">
+          <engine:Label text="PopupField with data attribute for possible choices" />
+        </engine:Div>
+      </engine:Div>
+    </engine:Div>
+    <engine:Label text="3. .Upload Form" />
+    <engine:Div class="indent">
+      <engine:Label text="Provides UXML tags for uploading files." />
+      <engine:Label text="For the upload itself, you need to create an upload process to your own server." />
+      <engine:Label text="Select other files, filter files to upload, and sample uploaded files function." />
+      <engine:Label text="The fields appear with the following tags:" />
+      <engine:Div class="code">
+        <engine:Label text="&lt;editor:Uploader name=&quot;File&quot; label=&quot;Upload image file&quot; accept=&quot;*.png;*.jpeg;*.jpg;&quot; /&gt;" />
+      </engine:Div>
+      <engine:Label text="When used with the Form tag, the file path can be obtained at submit time. Upload or copy the file to the server using that file path." />
+      <engine:Label text="If the accept attribute specifies an extension, you can upload only that file." />
+    </engine:Div>
+    <engine:Label text="See the following page for details." />
+    <editor:BindableButton text="https://mathru.net/unity/2828/" assembly="UnityEngine" type="Application" method="OpenURL" value="https://mathru.net/unity/2828/" />
+  </engine:Article>
+    
+</engine:UXML>
